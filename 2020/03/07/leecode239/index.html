@@ -28,7 +28,7 @@
 <meta property="og:description" content="滑动窗口的最大值 题目描述 解题思路 方案一 方案二          滑动窗口的最大值#题目描述#给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个：{[2,3,4],">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-07T08:20:24.000Z">
-<meta property="article:modified_time" content="2020-03-07T08:31:42.784Z">
+<meta property="article:modified_time" content="2020-03-07T12:39:33.943Z">
 <meta property="article:author" content="LieeiL">
 <meta name="twitter:card" content="summary">
 
@@ -117,6 +117,11 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
 
   </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
@@ -172,7 +177,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-07 16:20:24 / Modified: 16:31:42" itemprop="dateCreated datePublished" datetime="2020-03-07T16:20:24+08:00">2020-03-07</time>
+              <time title="Created: 2020-03-07 16:20:24 / Modified: 20:39:33" itemprop="dateCreated datePublished" datetime="2020-03-07T16:20:24+08:00">2020-03-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leecode/" itemprop="url" rel="index"><span itemprop="name">leecode</span></a>
+                </span>
             </span>
 
           
@@ -220,7 +234,7 @@
 <li>判断当前元素是否比队首大，如果是，队列清空，当前元素入队；</li>
 <li>如果不是，元素右侧入队，移除比其小的数据</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public int[] method2(int[] data, int k)&#123;</span><br><span class="line">        int[] result &#x3D; new int[data.length - k + 1];</span><br><span class="line">        Deque&lt;Integer&gt; deque &#x3D; new ArrayDeque&lt;Integer&gt;();</span><br><span class="line">        for(int i &#x3D; 0; i &lt; data.length; i++)&#123;</span><br><span class="line">            if(deque.size() &#x3D;&#x3D; 0)&#123;</span><br><span class="line">                deque.add(i);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                while ((i - deque.peek())&gt;k-1)&#123;&#x2F;&#x2F;移除超出区域的元素</span><br><span class="line">                    deque.poll();</span><br><span class="line">                &#125;</span><br><span class="line">                while (deque.size() &gt; 0 &amp;&amp; data[deque.getLast()] &lt; data[i])&#123;&#x2F;&#x2F;入队</span><br><span class="line">                    deque.removeLast();</span><br><span class="line">                &#125;</span><br><span class="line">                deque.add(i);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            if(i &gt;&#x3D; k-1 )&#123;</span><br><span class="line">                result[i - k +1 ] &#x3D; data[deque.peek()];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public int[] method2(int[] data, int k)&#123;</span><br><span class="line">        int[] result &#x3D; new int[nums.length - k + 1];</span><br><span class="line">        Deque&lt;Integer&gt; deque &#x3D; new ArrayDeque&lt;Integer&gt;();</span><br><span class="line">        for(int i &#x3D; 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            if(deque.size() &#x3D;&#x3D; 0)&#123;</span><br><span class="line">                deque.add(i);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                while (deque.size() &gt; 0 &amp;&amp; (i - deque.peek())&gt;k-1)&#123;&#x2F;&#x2F;移除超出区域的元素</span><br><span class="line">                    deque.poll();</span><br><span class="line">                &#125;</span><br><span class="line">                while (deque.size() &gt; 0 &amp;&amp; nums[deque.getLast()] &lt; nums[i])&#123;&#x2F;&#x2F;入队</span><br><span class="line">                    deque.removeLast();</span><br><span class="line">                &#125;</span><br><span class="line">                deque.add(i);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            if(i &gt;&#x3D; k-1 )&#123;</span><br><span class="line">                result[i - k +1 ] &#x3D; nums[deque.peek()];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -308,6 +322,12 @@
           <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
 </div>
